@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genitic Algorithm</title>
+    <style>
+        body {
+            background-color:  black;
+        }
+        .container {
+            text-align: center;
+        }
+        .population {
+            display: inline-block;
+        }
+        .crossed-over-pop {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button id="sort">Sort</button>
+        <button id="select">Selection</button>
+        <button id="mutate">Mutate</button>
+        <button id="fill">Fill Population</button>
+    </div>
+    <div class="container">
+        <div class="population">
+
+        </div>
+        <div class="crossed-over-pop">
+    
+        </div>
+    </div>
+
+</body>
+<script src="../assets/js/ga.js"></script>
+<script>
+    let sort = document.querySelector("#sort");
+    let select = document.querySelector("#select");
+    let mutate = document.querySelector("#mutate");
+    let fill = document.querySelector("#fill");
+    let population = [];
+    let newPopulation = [];
+    let mutatedPopulation = [];
+    population = generateRandomPopulation();
+    fillPopulation(population,".population");
+    sort.addEventListener("click", sortPopulation);
+    select.addEventListener("click", (event) => {
+        newPopulation = crossOverPopulation(population);
+        fillPopulation(newPopulation,".crossed-over-pop")
+    });
+    mutate.addEventListener("click", (event) => {
+        mutatePopulation(newPopulation);
+        fillPopulation(newPopulation,".crossed-over-pop")
+    });
+    fill.addEventListener("click", (event) => {
+        population = getNextGeneration(newPopulation);
+        fillPopulation(population,".population");
+    });
+</script>
+</html>

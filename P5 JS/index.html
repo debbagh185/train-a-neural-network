@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P5.js</title>
+</head>
+<body>
+    
+</body>
+<script src="../assets/js/p5.min.js"></script>
+<script>
+    let angle
+    let slider
+    function setup() {
+        createCanvas(1080,1024)
+        slider = createSlider(0,TWO_PI,PI/4,0.01)
+    }
+    function draw() {
+        background(20);
+        stroke(255)
+        translate(540,height)
+        branch(300)
+    }
+    function branch(len) {
+        line(0,0,0,-len)
+        translate(0,-len)
+        angle = slider.value()
+        if(len > 3) {
+            stroke(255,99,71)
+            push()
+            rotate(angle)
+            branch(len*0.67)
+            pop()
+            stroke(0,255,0)
+            push()
+            rotate(-angle)
+            branch(len*0.67)
+            pop()
+        }
+    }
+</script>
+</html>
