@@ -1,1 +1,1 @@
-# javascript-mini-projects
+# Train a Neural Network
